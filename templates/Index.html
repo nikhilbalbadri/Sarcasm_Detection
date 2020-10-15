@@ -47,7 +47,7 @@
 	<p>Enter the text below to find out if its Sarcastic or not!</p>
 	<form action="{{ url_for('predictSarcasm')}}" method="post">
 		<div class="form-group" style="padding-left: 8rem;">
-			<input type="text" class="form-control" id="userText" name="userText" required oninvalid="this.setCustomValidity('Please enter the text to detect Sarcasm')" oninput="this.setCustomValidity('')"  />>
+			<input type="text" class="form-control" id="userText" name="userText" required oninvalid="this.setCustomValidity('Please enter the text to detect Sarcasm')" oninput="this.setCustomValidity('')"/>
 		</div>
 		<button type="submit" id="submit" class="btn btn-primary">Detect Sarcasm</button>
 	</form>
