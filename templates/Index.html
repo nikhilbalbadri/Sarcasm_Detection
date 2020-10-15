@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<title>Twitter Sarcasm Detection</title>
+	<style>
+	h1 {
+		margin-top: 7rem;
+		color: chocolate
+	}
+	p{
+	    margin-top: 36px;
+	}
+	.form-group{
+	    margin: 3rem !important;
+	}
+	.form-control{
+		width: 90%
+	}
+	label{
+		font-size:3rem;
+	}
+	</style>
+	<script>
+	function resetForm() {
+		$('#userText').val("");
+		$('#prediction').empty();
+	}
+	function beautifyResult(){
+		var result = document.getElementById('prediction').textContent;
+		if (result == "Sarcastic"){
+			$("#prediction").css("color", "red");
+		}
+		else {
+			$("#prediction").css("color", "green");
+		}
+	}
+	</script>
+</head>
+
+<body onload="beautifyResult()">
+	<div class="predict_Sarcasm" style="text-align:center">
+	<h1>Twitter Sarcasm Detection</h1>
+	<p>Enter the text below to find out if its Sarcastic or not!</p>
+	<form action="{{ url_for('predictSarcasm')}}" method="post">
+		<div class="form-group" style="padding-left: 8rem;">
+			<input type="text" class="form-control" id="userText" name="userText" required oninvalid="this.setCustomValidity('Please enter the text to detect Sarcasm')" oninput="this.setCustomValidity('')"  />>
+		</div>
+		<button type="submit" id="submit" class="btn btn-primary">Detect Sarcasm</button>
+	</form>
+		<button onclick="resetForm()" class="btn btn-primary" style="margin-top: 1rem;">Reset</button>
+		<div class="form-group">
+			<label id="prediction" name="prediction">{{ prediction_text }}</label>
+		</div>
+	</div>
+
+</body>
+</html>
